@@ -20,7 +20,15 @@ public class Board {
     }
 
     private Boolean checkForWinner(String[][] playingfield, int column, int height) {
-        return checkHorizontal(playingfield, height);
+        return checkHorizontal(playingfield, height) || checkVertical(playingfield[column]) || checkDiagonal(playingfield, column, height);
+    }
+
+    private boolean checkDiagonal(String[][] playingfield, int column, int height) {
+        return false;
+    }
+
+    private boolean checkVertical(String[] row) {
+        return fourInOrder(row);
     }
 
     private Boolean checkHorizontal(String[][] playingfield, int height) {
@@ -32,10 +40,12 @@ public class Board {
     }
 
     private Boolean fourInOrder(String[] row) {
-        return tokensAreEqual(row[0], row[1], row[2], row[3]) ||
-                tokensAreEqual(row[1], row[2], row[3], row[4]) ||
-                tokensAreEqual(row[2], row[3], row[4], row[5]) ||
-                tokensAreEqual(row[3], row[4], row[5], row[6]);
+        for (int i = 3; i < row.length; i++) {
+            if (tokensAreEqual(row[i - 3], row[i - 2], row[i - 1], row[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean tokensAreEqual(String s, String s1, String s2, String s3) {

@@ -5,12 +5,14 @@ import java.util.Objects;
 public class Viergewinnt {
     private Board board;
     private final BoardFactory boardFactory;
+    private final GameService gameService;
     private String player = "X";
 
     private String winner = "None";
 
-    public Viergewinnt(BoardFactory boardFactory) {
+    public Viergewinnt(BoardFactory boardFactory, GameService gameService) {
         this.boardFactory = boardFactory;
+        this.gameService = gameService;
     }
 
     public void execute() {
@@ -39,5 +41,13 @@ public class Viergewinnt {
 
     public String getWinner() {
         return winner;
+    }
+
+    public void saveGame(String gameName) {
+        gameService.saveGame(gameName, this);
+    }
+
+    public String getPlayer() {
+        return player;
     }
 }

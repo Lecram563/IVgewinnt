@@ -1,9 +1,6 @@
 package com.viergewinnt.Integration;
 
-import com.viergewinnt.Board;
-import com.viergewinnt.BoardFactory;
-import com.viergewinnt.FullColumnException;
-import com.viergewinnt.Viergewinnt;
+import com.viergewinnt.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +11,7 @@ class ViergewinntTest {
 
     @BeforeEach
     void setUp() {
-        viergewinnt = new Viergewinnt(new BoardFactory());
+        viergewinnt = new Viergewinnt(new BoardFactory(), new GameService(new GameRepository(), new ViergewinntConverter(new ViergewinntDataObjectFactory(), null)));
     }
 
     @Test
@@ -60,5 +57,35 @@ class ViergewinntTest {
         viergewinnt.move(1);
         viergewinnt.move(2);
         assertEquals("X", viergewinnt.getWinner());
+    }
+
+    /* TODO: Implementieren
+    @Test
+    void diagonalWin() throws FullColumnException {
+        viergewinnt.execute();
+        viergewinnt.move(1);
+        viergewinnt.move(2);
+        viergewinnt.move(2);
+        viergewinnt.move(3);
+        viergewinnt.move(3);
+        viergewinnt.move(4);
+        viergewinnt.move(3);
+        viergewinnt.move(4);
+        viergewinnt.move(4);
+        viergewinnt.move(1);
+        viergewinnt.move(4);
+        assertEquals("X", viergewinnt.getWinner());
+    }
+     */
+
+    @Test
+    void saveAndLoadGame() throws FullColumnException {
+        viergewinnt.execute();
+        viergewinnt.move(1);
+        viergewinnt.saveGame("Neues Spiel");
+        viergewinnt.execute();
+        assertNull(viergewinnt.getBoard().getPlayingfield()[0][0]);
+        //viergewinnt.loadGame("Neues Spiel");
+        assertEquals("X", viergewinnt.getBoard().getPlayingfield()[0][0]);
     }
 }
