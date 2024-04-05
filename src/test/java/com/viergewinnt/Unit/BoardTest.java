@@ -50,7 +50,6 @@ class BoardTest {
         assertTrue(board.placeToken(0, "X"));
     }
 
-    /* TODO: Implementieren
     @Test
     void placeTokenShouldReturnTrueWhenPlayerWinsDiagonal() throws FullColumnException {
         board.placeToken(0, "X");
@@ -64,5 +63,5 @@ class BoardTest {
         board.placeToken(3, "O");
         assertTrue(board.placeToken(3, "X"));
     }
-     */
+
 }

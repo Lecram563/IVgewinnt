@@ -24,6 +24,45 @@ public class Board {
     }
 
     private boolean checkDiagonal(String[][] playingfield, int column, int height) {
+        String token = playingfield[column][height];
+        if (token == null) return false;
+        int[] directions = {-1, 1}; // Richtungen für die Diagonalprüfung: -1 für aufwärts, 1 für abwärts
+
+        for (int hDir : directions) {
+            for (int vDir : directions) {
+                int count = 1;
+                int h = height;
+                int v = column;
+
+                // Überprüfung in einer Richtung
+                while (true) {
+                    h += hDir;
+                    v += vDir;
+                    if (h < 0 || h >= playingfield[0].length || v < 0 || v >= playingfield.length || !Objects.equals(playingfield[v][h], token)) {
+                        break;
+                    }
+                    count++;
+                }
+
+                h = height;
+                v = column;
+
+                // Überprüfung in der entgegengesetzten Richtung
+                while (true) {
+                    h -= hDir;
+                    v -= vDir;
+                    if (h < 0 || h >= playingfield[0].length || v < 0 || v >= playingfield.length || !Objects.equals(playingfield[v][h], token)) {
+                        break;
+                    }
+                    count++;
+                }
+
+                // Mindestens vier Tokens in einer Reihe
+                if (count >= 4) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 

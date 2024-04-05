@@ -59,7 +59,7 @@ class ViergewinntTest {
         assertEquals("X", viergewinnt.getWinner());
     }
 
-    /* TODO: Implementieren
+
     @Test
     void diagonalWin() throws FullColumnException {
         viergewinnt.execute();
@@ -76,7 +76,7 @@ class ViergewinntTest {
         viergewinnt.move(4);
         assertEquals("X", viergewinnt.getWinner());
     }
-     */
+
 
     @Test
     void saveAndLoadGame() throws FullColumnException {
