@@ -1,8 +1,9 @@
 package com.viergewinnt;
 
-public class WinnerPopulator implements ViergewinntPopulatorInterface{
+public class WinnerPopulator implements ViergewinntPopulatorInterface {
     @Override
     public ViergewinntDataObject populate(Viergewinnt viergewinnt, ViergewinntDataObject viergewinntDataObject) {
-        return null;
+        viergewinntDataObject.winner = viergewinnt.getWinner();
+        return viergewinntDataObject;
     }
 }

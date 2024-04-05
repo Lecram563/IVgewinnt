@@ -25,7 +25,7 @@ public class Viergewinnt {
 
     public void move(int column) throws FullColumnException {
         Boolean winstatus = board.placeToken(column - 1, player);
-        if(winstatus) {
+        if (winstatus) {
             this.winner = player;
         }
         switchPlayers();
@@ -49,5 +49,9 @@ public class Viergewinnt {
 
     public String getPlayer() {
         return player;
+    }
+
+    public void loadGame(String gameName) {
+        gameService.loadGame(gameName, this);
     }
 }

@@ -85,7 +85,7 @@ class ViergewinntTest {
         viergewinnt.saveGame("Neues Spiel");
         viergewinnt.execute();
         assertNull(viergewinnt.getBoard().getPlayingfield()[0][0]);
-        //viergewinnt.loadGame("Neues Spiel");
+        viergewinnt.loadGame("Neues Spiel");
         assertEquals("X", viergewinnt.getBoard().getPlayingfield()[0][0]);
     }
 }

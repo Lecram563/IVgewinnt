@@ -11,4 +11,7 @@ public class GameService {
 
     public void saveGame(String gameName, Viergewinnt viergewinnt) {
     }
+
+    public void loadGame(String gameName, Viergewinnt viergewinnt) {
+    }
 }
