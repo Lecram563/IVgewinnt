@@ -8,4 +8,8 @@ public class GameRepository {
     public ViergewinntDataObject load(String gameName) {
         return new ViergewinntDataObject();
     }
+
+    public boolean load(ViergewinntDataObject viergewinntDataObject) {
+        return true;
+    }
 }

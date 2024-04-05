@@ -31,6 +31,15 @@ class GameServiceTest {
 
     @Test
     void loadGameShouldGetGameDataFromRepositoryAndWriteItIntoViergewinnt(){
+        when(viergewinntConverter.convert(viergewinnt)).thenReturn(viergewinntDataObject);
+        when(gameRepository.load(viergewinntDataObject)).thenReturn(true);
 
+        GameService gameService = new GameService(gameRepository, viergewinntConverter);
+        gameService.loadGame("Spielname", viergewinnt);
+
+        when(gameRepository.load("Spielname")).thenReturn(viergewinntDataObject);
+
+
+        gameService.loadGame("Spielname", viergewinnt);
     }
 }
