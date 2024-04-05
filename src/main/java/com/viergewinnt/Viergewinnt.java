@@ -51,6 +51,18 @@ public class Viergewinnt {
         return player;
     }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
     public void loadGame(String gameName) {
         gameService.loadGame(gameName, this);
     }
