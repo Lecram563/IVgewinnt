@@ -1,14 +1,10 @@
 package com.viergewinnt.Unit;
 
-import com.viergewinnt.BoardDataObject;
-import com.viergewinnt.Viergewinnt;
-import com.viergewinnt.ViergewinntDataObject;
-import com.viergewinnt.ViergewinntReverseConverter;
+import com.viergewinnt.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class ViergewinntReverseConverterTest {
     @Test
@@ -19,11 +15,12 @@ class ViergewinntReverseConverterTest {
         viergewinntDataObject.spieler = "X";
         viergewinntDataObject.winner = "None";
         Viergewinnt viergewinnt = mock(Viergewinnt.class);
-
-        ViergewinntReverseConverter converter = new ViergewinntReverseConverter();
+        ViergewinntDataObjectPopulatorInterface populator = mock(ViergewinntDataObjectPopulatorInterface.class);
+        when(populator.populate(viergewinntDataObject, viergewinnt)).thenReturn(viergewinnt);
+        ViergewinntDataObjectPopulatorInterface[] populators = new ViergewinntDataObjectPopulatorInterface[1];
+        populators[0] = populator;
+        ViergewinntReverseConverter converter = new ViergewinntReverseConverter(populators);
         converter.convert(viergewinntDataObject, viergewinnt);
-
-
     }
 
 }
