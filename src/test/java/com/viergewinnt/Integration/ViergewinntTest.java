@@ -11,7 +11,7 @@ class ViergewinntTest {
 
     @BeforeEach
     void setUp() {
-        viergewinnt = new Viergewinnt(new BoardFactory(), new GameService(new GameRepository(), new ViergewinntConverter(new ViergewinntDataObjectFactory(), null)));
+        viergewinnt = new Viergewinnt(new BoardFactory(), new GameService(new GameRepository(), new ViergewinntConverter(new ViergewinntDataObjectFactory(), null), new ViergewinntReverseConverter()));
     }
 
     @Test
