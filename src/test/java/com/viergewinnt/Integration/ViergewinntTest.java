@@ -11,7 +11,19 @@ class ViergewinntTest {
 
     @BeforeEach
     void setUp() {
-        viergewinnt = new Viergewinnt(new BoardFactory(), new GameService(new GameRepository(), new ViergewinntConverter(new ViergewinntDataObjectFactory(), null), new ViergewinntReverseConverter(new ViergewinntDataObjectPopulatorInterface[1])));
+        BoardPopulatorInterface[] boardPopulatorInterfaces = new BoardPopulatorInterface[1];
+        boardPopulatorInterfaces[0] = new PlayingFieldPopulator();
+        ViergewinntPopulatorInterface[] viergewinntPopulatorInterfaces = new ViergewinntPopulatorInterface[3];
+        viergewinntPopulatorInterfaces[0] = new SpielerPopulator();
+        viergewinntPopulatorInterfaces[1] = new WinnerPopulator();
+        viergewinntPopulatorInterfaces[2] = new BoardPopulator(new BoardConverter(new BoardDataObjectFactory(), boardPopulatorInterfaces));
+        ViergewinntDataObjectPopulatorInterface[] viergewinntDataObjectPopulatorInterfaces = new ViergewinntDataObjectPopulatorInterface[3];
+        viergewinntDataObjectPopulatorInterfaces[0] = new ReverseSpielerPopulator();
+        viergewinntDataObjectPopulatorInterfaces[1] = new ReverseWinnerPopulator();
+        ReverseBoardPopulatorInterface[] reverseBoardPopulatorInterfaces = new ReverseBoardPopulatorInterface[1];
+        reverseBoardPopulatorInterfaces[0] = new ReversePlayingFieldPopulator();
+        viergewinntDataObjectPopulatorInterfaces[2] = new reverseBoardPopulator(new ReverseBoardConverter(new BoardFactory(), reverseBoardPopulatorInterfaces));
+        viergewinnt = new Viergewinnt(new BoardFactory(), new GameService(new GameRepository(), new ViergewinntConverter(new ViergewinntDataObjectFactory(), viergewinntPopulatorInterfaces), new ViergewinntReverseConverter(viergewinntDataObjectPopulatorInterfaces)));
     }
 
     @Test

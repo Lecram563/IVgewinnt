@@ -99,4 +99,8 @@ public class Board {
         }
         throw new FullColumnException();
     }
+
+    public void setPlayingfield(String[][] playingField) {
+        this.playingfield = playingField;
+    }
 }
